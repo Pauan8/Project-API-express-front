@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const netflix = createSlice({
   name: 'netflix',
   initialState: {
-    items: [{ title: null, id: null, image: null, genre: null}, {}]
+    items: [{ title: null, id: null, image: null, genre: null }, {}]
   },
   reducers: {
     setItemList: (store, action) => {

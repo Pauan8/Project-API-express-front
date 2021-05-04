@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -17,13 +17,13 @@ export const CardList = () => {
   useEffect(() => {
     dispatch(netflix.actions.setGenre(genre));
     dispatch(generateGenre());
-  }, []);
+  }, [dispatch, genre]);
 
   return (
     <Genre genre={genre}>
       <Title genre={genre} />
-      {items.map((item) => (
-        <Card {...item} />
+      {items.map((item, i) => (
+        <Card {...item} key={i} />
       ))}
     </Genre>
   );

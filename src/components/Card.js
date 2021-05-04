@@ -19,8 +19,7 @@ const Title = styled.h1``
 
 const Description = styled.p``
 
-export const Card = ({ id, title}) => {
-  
+export const Card = ({ id, title }) => {
   return (
     <Wrapper>
       <ImageContainer>
