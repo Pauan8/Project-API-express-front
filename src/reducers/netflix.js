@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const netflix = createSlice({
   name: 'netflix',
   initialState: {
-    items: [{ title: null, id: null, image: null, genre: null }, {}]
+    items: [
+      { title: null, id: null, image: null, genre: null, country: null }
+    ]
   },
   reducers: {
     setItemList: (store, action) => {
@@ -17,15 +19,38 @@ const netflix = createSlice({
         return { ...item, genre: action.payload };
       });
       store.items = newArr;
+    },
+    setCountry: (store, action) => {
+      const newArr = store.items.map((item) => {
+        return { ...item, country: action.payload };
+      });
+      store.items = newArr;
     }
   }
 });
 
-export const generateGenre = () => {
+export const generateList = (name) => {
+  let url = '';
   return (dispatch, getState) => {
-    fetch(`https://netflix-data.herokuapp.com/types/movie?genre=${getState().netflix.items[1].genre}`)
-      .then((res) => res.json())
-      .then((data) => dispatch(netflix.actions.setItemList(data)));
+    if (name === 'genre') {
+      url = `https://netflix-data.herokuapp.com/types/movie?genre=${
+        getState().netflix.items[0].genre
+      }`;
+    } else {
+      url = `https://netflix-data.herokuapp.com/types/movie?country=${
+        getState().netflix.items[0].country
+      }`;
+    }
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => dispatch(netflix.actions.setItemList(data)))
+      .catch((error) => alert(`Ops, error: ${error}`));
   };
 };
 

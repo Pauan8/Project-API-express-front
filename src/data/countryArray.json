@@ -1,0 +1,8 @@
+[
+    { "display": "USA", "name": "unitedstates", "color": "#a7c5eb" },
+    { "display": "England", "name": "unitedkingdom", "color": "#709fb0" },
+    { "display": "Sweden", "name": "sweden", "color": "#3d84b8" },
+    { "display": "India", "name": "india", "color": "#413c69" },
+    { "display": "France", "name": "france", "color": "#132c33" },
+    { "display": "Japan", "name": "japan", "color": "#4a47a3" }
+  ]

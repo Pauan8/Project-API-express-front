@@ -1,33 +1,29 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components/macro';
 
 const Wrapper = styled.div`
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${(props) => props.color};
+  margin: 10px;
+`;
+const Container = styled.div`
+  width: 60%;
+  text-align: center;
+`;
+const Title = styled.h1``;
 
-const ImageContainer = styled.div`
-height: 200px;
-width: 200px;
-`
+const Description = styled.p``;
 
-const Image = styled.img`
-width: 100%;
-height: 200px;
-`
-const TextContainer = styled.div`
-`
-const Title = styled.h1``
-
-const Description = styled.p``
-
-export const Card = ({ id, title }) => {
+export const Card = ({ id, title, name, array }) => {
   return (
-    <Wrapper>
-      <ImageContainer>
-        <Image />
-      </ImageContainer>
-      <TextContainer>
+    <Wrapper
+      color={array[array.findIndex((i) => i.name === name)].color}>
+      <Container>
         <Title> {title} </Title>
         <Description> {id} </Description>
-      </TextContainer>
-    </Wrapper>)
-}
+      </Container>
+    </Wrapper>
+  );
+};

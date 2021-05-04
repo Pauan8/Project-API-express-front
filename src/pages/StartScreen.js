@@ -1,49 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
-const Start = styled.section`
-`
+import genreArray from '../data/genreArray';
+import countryArray from '../data/countryArray';
+import { CardList } from '../components/CardList';
 
-const Grid = styled.div`
-width: 100%;
-display: grid;
-grid-template-rows: repeat(10, 200px);
-grid-template-columns: 1fr;
-
-
-@media (min-width: 768px) {
-grid-template-rows: repeat(6, 200px);
-grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 1024px) {
-grid-template-rows: repeat(4, 200px);
-grid-template-columns: repeat(4, 1fr);
-}
-
-`
-const Container = styled.div`
-display: flex;
-height: 100%;
-justify-content:center;
-align-items: center;`
-
-const Title = styled.h1`
-`
+const Start = styled.section``;
 
 export const StartScreen = () => {
-  const genreArr = ['romantic', 'drama', 'kids', 'action', 'horror', 'comedy']
+  const onMoreContent = () => {};
+
   return (
     <Start>
-      <Grid>
-        {genreArr.map((gen, i) => (
-          <Link key={i} to={`/genres/${gen}`}>
-            <Container genre={gen}>
-              <Title>{gen}</Title>
-            </Container>
-          </Link>))}
-      </Grid>
+      <CardList
+        title="genres"
+        btnText="More"
+        handleClick={onMoreContent}
+        array={genreArray} />
+      <CardList
+        title="countries"
+        btnText="More"
+        handleClick={onMoreContent}
+        array={countryArray} />
     </Start>
-  )
-}
+  );
+};
