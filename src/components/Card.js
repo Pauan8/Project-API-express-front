@@ -1,29 +1,28 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  height: calc(100% - 30px);
+  margin: 5px;
   justify-content: center;
   align-items: center;
   background: ${(props) => props.color};
-  margin: 10px;
+  padding: 10px;
 `;
-const Container = styled.div`
-  width: 60%;
-  text-align: center;
-`;
-const Title = styled.h1``;
 
-const Description = styled.p``;
+const Title = styled.h2`
+font-size: 18px;`
 
-export const Card = ({ id, title, name, array }) => {
+const Text = styled.p`
+font-size: 16px;`
+
+export const Card = ({ color, title, description }) => {
   return (
-    <Wrapper
-      color={array[array.findIndex((i) => i.name === name)].color}>
-      <Container>
-        <Title> {title} </Title>
-        <Description> {id} </Description>
-      </Container>
-    </Wrapper>
-  );
+    <Container color={color}>
+      <Title>{title}</Title>
+      <Text>{description}</Text>
+    </Container>
+  )
 };

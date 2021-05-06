@@ -5,8 +5,8 @@ import { Route, Switch } from 'react-router-dom'
 
 import netflix from './reducers/netflix';
 import { StartScreen } from './pages/StartScreen'
+import { CategoryListScreen } from './pages/CategoryListScreen'
 import { SingleCategoryScreen } from './pages/SingleCategoryScreen'
-import { CategoriesScreen } from './pages/CategoriesScreen'
 
 export const App = () => {
   const reducer = combineReducers({
@@ -21,12 +21,8 @@ export const App = () => {
         <Route path="/" exact>
           <StartScreen />
         </Route>
-        <Route path="/type/:type" exact>
-          <CategoriesScreen />
-        </Route>
-        <Route path="/type/:type/:category" exact>
-          <SingleCategoryScreen />
-        </Route>
+        <Route path="/type/:type" exact component={CategoryListScreen} />
+        <Route path="/type/:type/:category/:singleCategory" component={SingleCategoryScreen} />
       </Switch>
     </Provider>
   )

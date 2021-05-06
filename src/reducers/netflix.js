@@ -4,7 +4,7 @@ const netflix = createSlice({
   name: 'netflix',
   initialState: {
     items: [
-      { title: null, id: null, image: null, genre: null, country: null }
+      { title: null, id: null, image: null, category: null }
     ]
   },
   reducers: {
@@ -14,15 +14,9 @@ const netflix = createSlice({
       });
       store.items = newArr;
     },
-    setGenre: (store, action) => {
+    setCategory: (store, action) => {
       const newArr = store.items.map((item) => {
-        return { ...item, genre: action.payload };
-      });
-      store.items = newArr;
-    },
-    setCountry: (store, action) => {
-      const newArr = store.items.map((item) => {
-        return { ...item, country: action.payload };
+        return { ...item, category: action.payload };
       });
       store.items = newArr;
     }
@@ -30,14 +24,14 @@ const netflix = createSlice({
 });
 
 export const generateList = (type) => {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     let url = '';
     if (type === 'movies') {
       url = 'https://netflix-data.herokuapp.com/movies';
     } else {
       url = 'https://netflix-data.herokuapp.com/tvshows';
     }
-    
+
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -53,15 +47,7 @@ export const generateList = (type) => {
 export const generateCategories = (type, name) => {
   let url = '';
   return (dispatch, getState) => {
-    if (name === 'genre') {
-      url = `https://netflix-data.herokuapp.com/${type}?genre=${
-        getState().netflix.items[0].genre
-      }`;
-    } else {
-      url = `https://netflix-data.herokuapp.com/${type}?country=${
-        getState().netflix.items[0].country
-      }`;
-    }
+    url = `https://netflix-data.herokuapp.com/${type}?${getState().netflix.items[0].category}=${name}`;
 
     fetch(url)
       .then((response) => {

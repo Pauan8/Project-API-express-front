@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 const ButtonContainer = styled.div`
 display: flex;
 align-content: center;
+width: fit-content;
 `
 const Button = styled.button`
 background: transparent;
