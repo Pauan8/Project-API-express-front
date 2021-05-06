@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 const Grid = styled.div`
@@ -22,26 +23,25 @@ const Container = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.color};
+  background: black;
 `;
 
-const Title = styled.h2``;
+const Title = styled.h2`
+color: white;`;
 
 const GenreLink = styled(Link)`
   text-decoration: none;
   color: white;
   font-size: 30px;
 `;
-export const CardGrid = ({ array, path }) => {
+export const CardGrid = ({ path }) => {
+    const items = useSelector((store) => store.netflix.items);
   return (
     <Grid>
-      {array.map((item, i) => (
-        <GenreLink key={i} to={`/${path}/${item.name}`}>
-          <Container color={item.color}>
-            <Title>{item.display}</Title>
-          </Container>
-        </GenreLink>
-      ))}
+        {items.map(item => 
+          <Container>
+            <Title>{item.title}</Title>
+          </Container> )}
     </Grid>
   );
 };

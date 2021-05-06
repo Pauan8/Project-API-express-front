@@ -29,15 +29,36 @@ const netflix = createSlice({
   }
 });
 
-export const generateList = (name) => {
+export const generateList = (type) => {
+  return (dispatch, getState) => {
+    let url = '';
+    if (type === 'movies') {
+      url = 'https://netflix-data.herokuapp.com/movies';
+    } else {
+      url = 'https://netflix-data.herokuapp.com/tvshows';
+    }
+    
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => dispatch(netflix.actions.setItemList(data)))
+      .catch((error) => alert(`Ops, error: ${error}`));
+  };
+};
+
+export const generateCategories = (type, name) => {
   let url = '';
   return (dispatch, getState) => {
     if (name === 'genre') {
-      url = `https://netflix-data.herokuapp.com/types/movie?genre=${
+      url = `https://netflix-data.herokuapp.com/${type}?genre=${
         getState().netflix.items[0].genre
       }`;
     } else {
-      url = `https://netflix-data.herokuapp.com/types/movie?country=${
+      url = `https://netflix-data.herokuapp.com/${type}?country=${
         getState().netflix.items[0].country
       }`;
     }

@@ -1,7 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
-const Header = styled.div`
+import { PageButton } from './PageButton'
+
+const HeaderContainer = styled.div`
   flex: 1 1 auto;
   background: black;
   padding: 50px;
@@ -13,10 +15,12 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-export const SubHeader = ({ title }) => {
+export const SubHeader = ({ title, btnText, handleClick }) => {
+    console.log(title)
   return (
-    <Header>
+    <HeaderContainer>
       <Title>{title.charAt(0).toUpperCase() + title.slice(1)}</Title>
-    </Header>
+      <PageButton content={btnText} handleClick={handleClick} />
+    </HeaderContainer>
   );
 };

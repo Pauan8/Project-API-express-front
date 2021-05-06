@@ -1,27 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import genreArray from '../data/genreArray';
-import countryArray from '../data/countryArray';
-import { CardList } from '../components/CardList';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components/macro';
 
 const Start = styled.section``;
 
-export const StartScreen = () => {
-  const onMoreContent = () => {};
+const Container = styled.div``
 
+const Title = styled.h1`
+color: white;`
+
+export const StartScreen = () => {
   return (
     <Start>
-      <CardList
-        title="genres"
-        btnText="More"
-        handleClick={onMoreContent}
-        array={genreArray} />
-      <CardList
-        title="countries"
-        btnText="More"
-        handleClick={onMoreContent}
-        array={countryArray} />
+      <Link to="/type/tvshows">
+        <Container>
+          <Title>TV SERIES</Title>
+        </Container>
+      </Link>
+      <Link to="/type/movies">
+        <Container>
+          <Title>MOVIES</Title>
+        </Container>
+      </Link>
     </Start>
   );
 };
